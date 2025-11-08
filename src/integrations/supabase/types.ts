@@ -14,7 +14,397 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      conversations: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      daily_summaries: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          summary_text: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          id?: string
+          summary_text: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          summary_text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          sender: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          sender: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          sender?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mood_entries: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          intensity: number
+          mood: string
+          notes: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          id?: string
+          intensity: number
+          mood: string
+          notes?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          intensity?: number
+          mood?: string
+          notes?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notes: {
+        Row: {
+          color: string | null
+          content: string | null
+          created_at: string
+          id: string
+          is_favorite: boolean
+          tags: string[] | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          color?: string | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_favorite?: boolean
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          color?: string | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_favorite?: boolean
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          name?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reminders: {
+        Row: {
+          category: string | null
+          completed: boolean
+          created_at: string
+          datetime: string
+          id: string
+          tags: string[] | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          category?: string | null
+          completed?: boolean
+          created_at?: string
+          datetime: string
+          id?: string
+          tags?: string[] | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          category?: string | null
+          completed?: boolean
+          created_at?: string
+          datetime?: string
+          id?: string
+          tags?: string[] | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      routine_logs: {
+        Row: {
+          created_at: string
+          date: string
+          hours_completed: number
+          id: string
+          notes: string | null
+          routine_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          hours_completed: number
+          id?: string
+          notes?: string | null
+          routine_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          hours_completed?: number
+          id?: string
+          notes?: string | null
+          routine_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "routine_logs_routine_id_fkey"
+            columns: ["routine_id"]
+            isOneToOne: false
+            referencedRelation: "routines"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      routines: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          name: string
+          target_hours: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          target_hours: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          target_hours?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      timeline_events: {
+        Row: {
+          content: string | null
+          created_at: string
+          event_date: string
+          event_type: string
+          id: string
+          reference_id: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          event_date: string
+          event_type: string
+          id?: string
+          reference_id?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          event_date?: string
+          event_type?: string
+          id?: string
+          reference_id?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          about_me: string | null
+          ai_personality: string
+          ai_response_detail: string
+          created_at: string
+          daily_summary_enabled: boolean | null
+          id: string
+          language: string
+          notifications_enabled: boolean
+          theme: string
+          typing_speed: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          about_me?: string | null
+          ai_personality?: string
+          ai_response_detail?: string
+          created_at?: string
+          daily_summary_enabled?: boolean | null
+          id?: string
+          language?: string
+          notifications_enabled?: boolean
+          theme?: string
+          typing_speed?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          about_me?: string | null
+          ai_personality?: string
+          ai_response_detail?: string
+          created_at?: string
+          daily_summary_enabled?: boolean | null
+          id?: string
+          language?: string
+          notifications_enabled?: boolean
+          theme?: string
+          typing_speed?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      weekly_goals: {
+        Row: {
+          category: string
+          created_at: string
+          current_value: number
+          description: string | null
+          id: string
+          is_completed: boolean
+          target_value: number
+          title: string
+          unit: string
+          updated_at: string
+          user_id: string
+          week_start_date: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          current_value?: number
+          description?: string | null
+          id?: string
+          is_completed?: boolean
+          target_value: number
+          title: string
+          unit: string
+          updated_at?: string
+          user_id: string
+          week_start_date: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          current_value?: number
+          description?: string | null
+          id?: string
+          is_completed?: boolean
+          target_value?: number
+          title?: string
+          unit?: string
+          updated_at?: string
+          user_id?: string
+          week_start_date?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
