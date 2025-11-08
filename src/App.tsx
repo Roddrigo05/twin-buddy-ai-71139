@@ -33,7 +33,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <AuthProvider>
             <UserSettingsProvider>
               <Routes>
@@ -98,7 +98,7 @@ const App = () => (
                 }
               />
               <Route
-                path="/goals"
+                path="/weekly-goals"
                 element={
                   <ProtectedRoute>
                     <WeeklyGoals />
