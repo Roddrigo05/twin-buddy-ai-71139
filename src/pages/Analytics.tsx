@@ -64,8 +64,8 @@ export default function Analytics() {
         totalConversations: conversationsCount.count || 0,
       });
 
-      if (moodData.data) {
-        setMoodEntries(moodData.data as MoodEntry[]);
+      if (moodData.data && Array.isArray(moodData.data)) {
+        setMoodEntries(moodData.data as unknown as MoodEntry[]);
       }
 
       setLoading(false);

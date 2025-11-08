@@ -191,6 +191,9 @@ export type Database = {
           created_at: string
           datetime: string
           id: string
+          last_checked_at: string | null
+          notified_at: string | null
+          postponed_count: number | null
           tags: string[] | null
           title: string
           user_id: string
@@ -201,6 +204,9 @@ export type Database = {
           created_at?: string
           datetime: string
           id?: string
+          last_checked_at?: string | null
+          notified_at?: string | null
+          postponed_count?: number | null
           tags?: string[] | null
           title: string
           user_id: string
@@ -211,6 +217,9 @@ export type Database = {
           created_at?: string
           datetime?: string
           id?: string
+          last_checked_at?: string | null
+          notified_at?: string | null
+          postponed_count?: number | null
           tags?: string[] | null
           title?: string
           user_id?: string
@@ -248,6 +257,41 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "routine_logs_routine_id_fkey"
+            columns: ["routine_id"]
+            isOneToOne: false
+            referencedRelation: "routines"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      routine_streak_tracker: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          routine_id: string
+          target_met: boolean
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          id?: string
+          routine_id: string
+          target_met?: boolean
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          routine_id?: string
+          target_met?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "routine_streak_tracker_routine_id_fkey"
             columns: ["routine_id"]
             isOneToOne: false
             referencedRelation: "routines"

@@ -18,6 +18,12 @@ interface Message {
   sender: "user" | "ai";
   content: string;
   timestamp: string;
+  metadata?: {
+    type?: string;
+    reminder_id?: string;
+    action_type?: string;
+    quick_actions?: Array<{ label: string; action: string }>;
+  };
 }
 
 export default function Chat() {
@@ -80,6 +86,7 @@ export default function Chat() {
       sender: msg.sender as "user" | "ai",
       content: msg.content,
       timestamp: msg.created_at,
+      metadata: msg.metadata,
     }));
     setMessages(formattedMessages);
   };
@@ -345,41 +352,68 @@ export default function Chat() {
                       </div>
                     )}
                     {messages.map((message) => (
-                      <div
-                        key={message.id}
-                        className={`flex animate-fade-in ${
-                          message.sender === "user" ? "justify-end" : "justify-start"
-                        }`}
-                      >
+                      <div key={message.id} className="space-y-2">
                         <div
-                          className={`max-w-[80%] rounded-2xl px-4 py-2 transition-all ${
-                            message.sender === "user"
-                              ? "bg-gradient-primary text-primary-foreground shadow-glow"
-                              : "bg-muted hover:bg-muted/80"
+                          className={`flex animate-fade-in ${
+                            message.sender === "user" ? "justify-end" : "justify-start"
                           }`}
                         >
-                          {message.sender === "ai" ? (
-                            <div className="text-sm prose prose-sm dark:prose-invert max-w-none">
-                              <ReactMarkdown
-                                rehypePlugins={[rehypeSanitize]}
-                                components={{
-                                  p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                                  strong: ({ children }) => <strong className="font-bold">{children}</strong>,
-                                  em: ({ children }) => <em className="italic">{children}</em>,
-                                  ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
-                                  ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,
-                                  code: ({ children }) => <code className="bg-muted px-1 rounded text-xs">{children}</code>,
-                                }}
-                              >
+                          <div
+                            className={`max-w-[80%] rounded-2xl px-4 py-2 transition-all ${
+                              message.sender === "user"
+                                ? "bg-gradient-primary text-primary-foreground shadow-glow"
+                                : "bg-muted hover:bg-muted/80"
+                            }`}
+                          >
+                            {message.sender === "ai" && message.metadata?.type?.startsWith('automated_') && (
+                              <div className="mb-2">
+                                <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">
+                                  {t("samanthaAssistant")}
+                                </span>
+                              </div>
+                            )}
+                            {message.sender === "ai" ? (
+                              <div className="text-sm prose prose-sm dark:prose-invert max-w-none">
+                                <ReactMarkdown
+                                  rehypePlugins={[rehypeSanitize]}
+                                  components={{
+                                    p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+                                    em: ({ children }) => <em className="italic">{children}</em>,
+                                    ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
+                                    ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,
+                                    code: ({ children }) => <code className="bg-muted px-1 rounded text-xs">{children}</code>,
+                                  }}
+                                >
+                                  {message.content}
+                                </ReactMarkdown>
+                              </div>
+                            ) : (
+                              <p className="text-sm whitespace-pre-wrap break-words">
                                 {message.content}
-                              </ReactMarkdown>
-                            </div>
-                          ) : (
-                            <p className="text-sm whitespace-pre-wrap break-words">
-                              {message.content}
-                            </p>
-                          )}
+                              </p>
+                            )}
+                          </div>
                         </div>
+                        
+                        {message.sender === "ai" && message.metadata?.quick_actions && (
+                          <div className="flex gap-2 ml-4 flex-wrap">
+                            {message.metadata.quick_actions.map((action: any, idx: number) => (
+                              <Button
+                                key={idx}
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                  setInput(action.label);
+                                  sendMessage();
+                                }}
+                                className="text-xs"
+                              >
+                                {action.label}
+                              </Button>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ))}
                     {loading && (

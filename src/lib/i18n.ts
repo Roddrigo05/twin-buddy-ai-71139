@@ -284,6 +284,17 @@ export const translations = {
     categoryCreative: "Criativo",
     categoryFitness: "Fitness",
 
+    // === LEMBRETES PROATIVOS (Samantha Assistant) ===
+    reminderPostponed: "Lembrete adiado",
+    reminderCompleted: "Lembrete concluído",
+    reminderDeleted: "Lembrete removido",
+    routineAdjusted: "Rotina ajustada",
+    postponeToTomorrow: "Adiar para amanhã",
+    adjustTime: "Ajustar hora",
+    markAsCompleted: "Marcar como concluído",
+    samanthaAssistant: "🤖 Assistente",
+    automatedMessage: "Mensagem automática da Samantha",
+
     // === ROTINA (Routine.tsx) ===
     routinePage: "Rotina Inteligente",
     routineDescription: "Acompanhe seus hábitos diários",
@@ -661,6 +672,17 @@ export const translations = {
     createFirstGoal: "Create your first weekly goal",
     categoryCreative: "Creative",
     categoryFitness: "Fitness",
+
+    // === PROACTIVE REMINDERS (Samantha Assistant) ===
+    reminderPostponed: "Reminder postponed",
+    reminderCompleted: "Reminder completed",
+    reminderDeleted: "Reminder deleted",
+    routineAdjusted: "Routine adjusted",
+    postponeToTomorrow: "Postpone to tomorrow",
+    adjustTime: "Adjust time",
+    markAsCompleted: "Mark as completed",
+    samanthaAssistant: "🤖 Assistant",
+    automatedMessage: "Automated message from Samantha",
 
     // === ROUTINE ===
     routinePage: "Smart Routine",

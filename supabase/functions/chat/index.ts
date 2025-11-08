@@ -79,7 +79,7 @@ Deno.serve(async (req) => {
               ? 'IMPORTANT: Respond ONLY in English (UK/US).' 
               : 'IMPORTANTE: Responda APENAS em Português Europeu (PT-PT), NÃO Português do Brasil. Use vocabulário e expressões de Portugal (ex: "telemóvel" em vez de "celular", "ecrã" em vez de "tela", "autocarro" em vez de "ônibus", etc.).';
             
-            systemPrompt = `You are AI Twin, an intelligent personal assistant.
+    systemPrompt = `You are Samantha, the AI Twin - an intelligent, empathetic personal assistant.
 
 ${languageInstruction}
 
@@ -95,7 +95,16 @@ FORMATTING: Use Markdown for formatting:
 
 ${userSettings.about_me ? `USER CONTEXT: "${userSettings.about_me}"` : ''}
 
-IMPORTANT: Radically adapt your tone and style based on the chosen personality.`;
+IMPORTANT: Radically adapt your tone and style based on the chosen personality.
+
+TOOLS AVAILABLE:
+You can help users manage their reminders and routines. When users ask to:
+- Postpone/reschedule a reminder: Use the postpone_reminder tool
+- Complete a reminder: Use the complete_reminder tool
+- Delete a reminder: Use the delete_reminder tool
+- Adjust a routine target: Use the adjust_routine_target tool
+
+Always confirm actions with users before executing them.`;
           }
         }
       } catch (error) {
@@ -116,6 +125,66 @@ IMPORTANT: Radically adapt your tone and style based on the chosen personality.`
           ...messages,
         ],
         stream: true,
+        tools: [
+          {
+            type: "function",
+            function: {
+              name: "postpone_reminder",
+              description: "Adia um lembrete para uma nova data/hora",
+              parameters: {
+                type: "object",
+                properties: {
+                  reminder_id: { type: "string", description: "ID do lembrete" },
+                  new_datetime: { type: "string", description: "Nova data/hora (ISO 8601)" }
+                },
+                required: ["reminder_id", "new_datetime"]
+              }
+            }
+          },
+          {
+            type: "function",
+            function: {
+              name: "complete_reminder",
+              description: "Marca um lembrete como concluído",
+              parameters: {
+                type: "object",
+                properties: {
+                  reminder_id: { type: "string", description: "ID do lembrete" }
+                },
+                required: ["reminder_id"]
+              }
+            }
+          },
+          {
+            type: "function",
+            function: {
+              name: "delete_reminder",
+              description: "Remove um lembrete",
+              parameters: {
+                type: "object",
+                properties: {
+                  reminder_id: { type: "string", description: "ID do lembrete" }
+                },
+                required: ["reminder_id"]
+              }
+            }
+          },
+          {
+            type: "function",
+            function: {
+              name: "adjust_routine_target",
+              description: "Ajusta a meta de uma rotina",
+              parameters: {
+                type: "object",
+                properties: {
+                  routine_id: { type: "string", description: "ID da rotina" },
+                  new_target: { type: "number", description: "Nova meta em horas" }
+                },
+                required: ["routine_id", "new_target"]
+              }
+            }
+          }
+        ]
       }),
     });
 

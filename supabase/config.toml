@@ -1,1 +1,7 @@
 project_id = "abnyoxifoukgfzuwlzfi"
+
+[functions.chat]
+verify_jwt = false
+
+[functions.reminder-ai-handler]
+verify_jwt = false
