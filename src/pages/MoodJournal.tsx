@@ -224,7 +224,7 @@ export default function MoodJournal() {
           <div className="flex h-64 items-center justify-center text-center text-muted-foreground">
             <div>
               <Smile className="mx-auto mb-4 h-12 w-12 opacity-50" />
-              <p className="mb-2 text-lg font-medium">Nenhum registo ainda</p>
+              <p className="mb-2 text-lg font-medium">😊 Nenhum registo ainda</p>
               <p className="text-sm">Comece a registar como se sente hoje</p>
             </div>
           </div>

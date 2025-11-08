@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { Plus, Trash2, Tag } from "lucide-react";
+import { Plus, Trash2, Tag, Bell } from "lucide-react";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -244,7 +244,11 @@ export default function Reminders() {
             </CardHeader>
             <CardContent>
               {activeReminders.length === 0 ? (
-                <p className="text-center text-sm text-muted-foreground">Nenhum lembrete ativo</p>
+                <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
+                  <Bell className="mx-auto mb-3 h-12 w-12 opacity-50" />
+                  <p className="text-lg font-medium mb-1">📌 Nenhum lembrete ativo</p>
+                  <p className="text-sm">Comece criando um novo lembrete</p>
+                </div>
               ) : (
                 <div className="space-y-2">
                   {activeReminders.map((reminder) => (

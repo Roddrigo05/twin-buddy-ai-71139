@@ -163,7 +163,7 @@ export default function Timeline() {
                 <Sparkles className="h-12 w-12 text-primary animate-pulse" />
               </div>
               <h3 className="text-2xl font-semibold animate-fade-in" style={{ animationDelay: "0.1s" }}>
-                Nenhuma atividade por aqui 📭
+                ✨ Nenhuma atividade por aqui
               </h3>
               <p className="text-muted-foreground animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 Parece que ainda não há atividades registadas.

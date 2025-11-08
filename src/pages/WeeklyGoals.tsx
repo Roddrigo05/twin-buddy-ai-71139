@@ -335,7 +335,7 @@ export default function WeeklyGoals() {
           <div className="flex h-64 items-center justify-center text-center text-muted-foreground">
             <div>
               <Target className="mx-auto mb-4 h-12 w-12 opacity-50" />
-              <p className="mb-2 text-lg font-medium">Nenhum objetivo definido</p>
+              <p className="mb-2 text-lg font-medium">🎯 Nenhum objetivo definido</p>
               <p className="text-sm">Crie seu primeiro objetivo semanal</p>
             </div>
           </div>

@@ -279,7 +279,7 @@ export default function Routine() {
           <div className="flex h-64 items-center justify-center text-center text-muted-foreground">
             <div>
               <Clock className="mx-auto mb-4 h-12 w-12 opacity-50" />
-              <p className="mb-2 text-lg font-medium">Nenhuma rotina criada</p>
+              <p className="mb-2 text-lg font-medium">⏰ Nenhuma rotina criada</p>
               <p className="text-sm">Crie sua primeira rotina para começar</p>
             </div>
           </div>
