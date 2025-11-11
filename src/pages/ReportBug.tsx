@@ -42,8 +42,24 @@ export default function ReportBug() {
     setLoading(true);
 
     try {
-      // Simulação de envio (pode ser integrado com serviço externo)
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Enviar dados para o webhook do Make
+      const response = await fetch('https://hook.eu2.make.com/wst5yc4tlfiyggg2h0lu2xutrsx874h3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          name: formData.name,
+          email: formData.email,
+          description: formData.description,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Falha ao enviar relatório');
+      }
 
       toast.success(t("bugReportSent"));
       setSubmitted(true);
