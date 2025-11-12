@@ -1,6 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { 
-  Brain, 
   MessageSquare, 
   FileText, 
   Bell, 
@@ -25,11 +24,15 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useTranslation } from "@/contexts/UserSettingsContext";
+import { useTheme } from "next-themes";
+import logoDark from "@/assets/logo-dark.png";
+import logoLight from "@/assets/logo-light.png";
 
 export function AppSidebar() {
   const { t } = useTranslation();
   const { state } = useSidebar();
   const location = useLocation();
+  const { resolvedTheme } = useTheme();
   const isCollapsed = state === "collapsed";
 
   const items = [
@@ -52,8 +55,12 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarContent>
         <div className="flex items-center gap-2 px-4 py-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-primary shadow-md">
-            <Brain className="h-6 w-6 text-primary-foreground" />
+          <div className="flex h-10 w-10 items-center justify-center">
+            <img 
+              src={resolvedTheme === "dark" ? logoDark : logoLight} 
+              alt="AI Twin Logo" 
+              className="h-10 w-10 object-contain"
+            />
           </div>
           {!isCollapsed && (
             <div className="flex flex-col">
