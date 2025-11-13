@@ -14,10 +14,6 @@ interface UserSettings {
   ai_response_detail: string;
   typing_speed: string;
   daily_summary_enabled: boolean;
-  email_reminders_enabled: boolean;
-  email_notes_enabled: boolean;
-  reminder_email_delay_hours: number;
-  note_email_delay_days: number;
 }
 
 interface UserProfile {
@@ -45,10 +41,6 @@ const defaultSettings: UserSettings = {
   ai_response_detail: "moderado",
   typing_speed: "normal",
   daily_summary_enabled: true,
-  email_reminders_enabled: true,
-  email_notes_enabled: true,
-  reminder_email_delay_hours: 24,
-  note_email_delay_days: 7,
 };
 
 export function UserSettingsProvider({ children }: { children: ReactNode }) {
@@ -83,10 +75,6 @@ export function UserSettingsProvider({ children }: { children: ReactNode }) {
           ai_response_detail: settingsResult.data.ai_response_detail || defaultSettings.ai_response_detail,
           typing_speed: settingsResult.data.typing_speed || defaultSettings.typing_speed,
           daily_summary_enabled: settingsResult.data.daily_summary_enabled ?? defaultSettings.daily_summary_enabled,
-          email_reminders_enabled: settingsResult.data.email_reminders_enabled ?? defaultSettings.email_reminders_enabled,
-          email_notes_enabled: settingsResult.data.email_notes_enabled ?? defaultSettings.email_notes_enabled,
-          reminder_email_delay_hours: settingsResult.data.reminder_email_delay_hours ?? defaultSettings.reminder_email_delay_hours,
-          note_email_delay_days: settingsResult.data.note_email_delay_days ?? defaultSettings.note_email_delay_days,
         };
         setSettings(loadedSettings);
         setTheme(loadedSettings.theme);

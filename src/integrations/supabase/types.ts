@@ -62,39 +62,6 @@ export type Database = {
         }
         Relationships: []
       }
-      email_notifications: {
-        Row: {
-          created_at: string | null
-          email_sent: boolean | null
-          email_sent_at: string | null
-          id: string
-          last_check: string | null
-          notification_type: string
-          reference_id: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          email_sent?: boolean | null
-          email_sent_at?: string | null
-          id?: string
-          last_check?: string | null
-          notification_type: string
-          reference_id: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          email_sent?: boolean | null
-          email_sent_at?: string | null
-          id?: string
-          last_check?: string | null
-          notification_type?: string
-          reference_id?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       messages: {
         Row: {
           content: string
@@ -399,13 +366,9 @@ export type Database = {
           ai_response_detail: string
           created_at: string
           daily_summary_enabled: boolean | null
-          email_notes_enabled: boolean | null
-          email_reminders_enabled: boolean | null
           id: string
           language: string
-          note_email_delay_days: number | null
           notifications_enabled: boolean
-          reminder_email_delay_hours: number | null
           theme: string
           typing_speed: string | null
           updated_at: string
@@ -417,13 +380,9 @@ export type Database = {
           ai_response_detail?: string
           created_at?: string
           daily_summary_enabled?: boolean | null
-          email_notes_enabled?: boolean | null
-          email_reminders_enabled?: boolean | null
           id?: string
           language?: string
-          note_email_delay_days?: number | null
           notifications_enabled?: boolean
-          reminder_email_delay_hours?: number | null
           theme?: string
           typing_speed?: string | null
           updated_at?: string
@@ -435,13 +394,9 @@ export type Database = {
           ai_response_detail?: string
           created_at?: string
           daily_summary_enabled?: boolean | null
-          email_notes_enabled?: boolean | null
-          email_reminders_enabled?: boolean | null
           id?: string
           language?: string
-          note_email_delay_days?: number | null
           notifications_enabled?: boolean
-          reminder_email_delay_hours?: number | null
           theme?: string
           typing_speed?: string | null
           updated_at?: string
