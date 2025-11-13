@@ -3,6 +3,7 @@ import { ProfileSection } from "@/components/settings/ProfileSection";
 import { AIPersonalitySection } from "@/components/settings/AIPersonalitySection";
 import { SecuritySection } from "@/components/settings/SecuritySection";
 import { PreferencesSection } from "@/components/settings/PreferencesSection";
+import { EmailNotificationsSection } from "@/components/settings/EmailNotificationsSection";
 import { useTranslation } from "@/contexts/UserSettingsContext";
 
 export default function Settings() {
@@ -21,6 +22,10 @@ export default function Settings() {
           <AIPersonalitySection />
           <SecuritySection />
           <PreferencesSection />
+        </div>
+
+        <div className="mt-6">
+          <EmailNotificationsSection />
         </div>
       </div>
     </DashboardLayout>
