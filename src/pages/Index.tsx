@@ -1,27 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, FileText, Bell, TrendingUp, Brain, Sparkles, Shield, Zap } from "lucide-react";
 import landingBg from "@/assets/landing-bg.jpeg";
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
+import logoLanding from "@/assets/logo-landing.png";
 
 const Index = () => {
   const navigate = useNavigate();
-  const { theme, resolvedTheme } = useTheme();
-  
-  // Determinar qual logo usar baseado no tema
-  const currentLogo = (resolvedTheme === "dark" || theme === "dark") ? logoDark : logoLight;
-
-  // Garantir que o script Retell AI só está ativo na landing page
-  useEffect(() => {
-    // Script já está carregado via index.html
-    return () => {
-      // Cleanup se necessário quando sair da página
-    };
-  }, []);
 
   const features = [
     {
@@ -89,7 +74,7 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 py-24 text-center">
           <div className="mb-8 flex justify-center animate-fade-in">
             <img 
-              src={currentLogo} 
+              src={logoLanding} 
               alt="AI Twin" 
               className="h-24 w-auto md:h-32 drop-shadow-2xl hover:scale-110 transition-transform duration-300"
             />
@@ -200,61 +185,6 @@ const Index = () => {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Showcase Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Veja o <span className="bg-gradient-primary bg-clip-text text-transparent">AI Twin</span> em Ação
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Uma interface intuitiva e poderosa que coloca o controlo nas suas mãos
-            </p>
-          </div>
-
-          <div className="grid gap-12 md:grid-cols-3 max-w-7xl mx-auto">
-            {/* Screenshot 1 - Chat */}
-            <div className="flex flex-col items-center text-center group">
-              <div className="mb-6 rounded-2xl overflow-hidden shadow-xl border-2 border-border bg-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <MessageSquare className="h-20 w-20 text-primary opacity-50" />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Chat Inteligente</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Converse naturalmente com a Samantha e receba respostas personalizadas em tempo real
-              </p>
-            </div>
-
-            {/* Screenshot 2 - Dashboard */}
-            <div className="flex flex-col items-center text-center group">
-              <div className="mb-6 rounded-2xl overflow-hidden shadow-xl border-2 border-border bg-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <TrendingUp className="h-20 w-20 text-primary opacity-50" />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Análises Detalhadas</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Acompanhe o seu progresso com gráficos e insights que revelam padrões importantes
-              </p>
-            </div>
-
-            {/* Screenshot 3 - Notes */}
-            <div className="flex flex-col items-center text-center group">
-              <div className="mb-6 rounded-2xl overflow-hidden shadow-xl border-2 border-border bg-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <FileText className="h-20 w-20 text-primary opacity-50" />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Organização Simples</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Guarde e organize as suas notas, ideias e lembretes num único lugar
-              </p>
-            </div>
           </div>
         </div>
       </section>
