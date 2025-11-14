@@ -38,7 +38,7 @@ const Index = () => {
   const benefits = [
     {
       icon: Brain,
-      title: "IA que Entende Você",
+      title: "IA Que Te Entende",
       description: "Não é apenas um assistente, é o seu gémeo digital que aprende e evolui consigo.",
     },
     {
