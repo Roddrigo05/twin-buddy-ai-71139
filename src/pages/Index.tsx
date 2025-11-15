@@ -1,12 +1,21 @@
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { MessageSquare, FileText, Bell, TrendingUp, Brain, Sparkles, Shield, Zap } from "lucide-react";
 import landingBg from "@/assets/landing-bg.jpeg";
-import logoLanding from "@/assets/logo-landing.png";
+import logoDark from "@/assets/logo-dark.png";
+import logoLight from "@/assets/logo-light.png";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { resolvedTheme } = useTheme();
 
   const features = [
     {
@@ -74,7 +83,7 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 py-24 text-center">
           <div className="mb-8 flex justify-center animate-fade-in">
             <img 
-              src={logoLanding} 
+              src={resolvedTheme === 'dark' ? logoDark : logoLight}
               alt="AI Twin" 
               className="h-24 w-auto md:h-32 drop-shadow-2xl hover:scale-110 transition-transform duration-300"
             />
@@ -155,6 +164,61 @@ const Index = () => {
         </div>
       </section>
 
+      {/* App Showcase Section */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Veja o <span className="text-primary">AI Twin</span> em Ação
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Descubra como a interface intuitiva transforma a sua produtividade diária
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+            {/* Screenshot 1: Chat com Samantha */}
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <MessageSquare className="h-16 w-16 text-primary/40" />
+              </div>
+              <CardContent className="pt-6">
+                <h3 className="text-xl font-semibold mb-2">Chat Inteligente</h3>
+                <p className="text-muted-foreground">
+                  Converse naturalmente com a Samantha e receba respostas personalizadas instantaneamente
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Screenshot 2: Dashboard de Análises */}
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <TrendingUp className="h-16 w-16 text-primary/40" />
+              </div>
+              <CardContent className="pt-6">
+                <h3 className="text-xl font-semibold mb-2">Análises Detalhadas</h3>
+                <p className="text-muted-foreground">
+                  Visualize seu progresso com gráficos intuitivos e insights acionáveis
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Screenshot 3: Sistema de Notas */}
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <FileText className="h-16 w-16 text-primary/40" />
+              </div>
+              <CardContent className="pt-6">
+                <h3 className="text-xl font-semibold mb-2">Organização Eficiente</h3>
+                <p className="text-muted-foreground">
+                  Capture ideias rapidamente e mantenha tudo organizado automaticamente
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -221,6 +285,91 @@ const Index = () => {
                 Explorar Funcionalidades
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="py-24 bg-gradient-to-b from-background to-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Perguntas <span className="text-primary">Frequentes</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Tire suas dúvidas sobre o AI Twin
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="text-left text-lg font-semibold">
+                  O que é o AI Twin?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  O AI Twin é o seu gémeo digital inteligente que ajuda a organizar a sua vida, 
+                  lembrá-lo de tarefas importantes e fornecer insights personalizados sobre a sua 
+                  produtividade através de conversas naturais com a Samantha, a sua assistente IA.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2">
+                <AccordionTrigger className="text-left text-lg font-semibold">
+                  Como funciona o chat com a Samantha?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  A Samantha usa inteligência artificial avançada para conversar naturalmente consigo. 
+                  Você pode fazer perguntas, pedir conselhos, organizar pensamentos ou simplesmente 
+                  conversar. Ela aprende com suas interações e adapta-se ao seu estilo de comunicação.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3">
+                <AccordionTrigger className="text-left text-lg font-semibold">
+                  Os meus dados estão seguros?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Sim! A privacidade e segurança dos seus dados são a nossa prioridade máxima. 
+                  Todos os seus dados são criptografados e armazenados de forma segura. Você tem 
+                  controlo total sobre as suas informações e pode exportar ou eliminar os seus dados 
+                  a qualquer momento.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4">
+                <AccordionTrigger className="text-left text-lg font-semibold">
+                  O AI Twin funciona offline?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Algumas funcionalidades como visualizar notas guardadas e lembretes podem funcionar 
+                  offline. No entanto, o chat com a Samantha e a sincronização de dados requerem 
+                  conexão à internet para funcionar completamente.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5">
+                <AccordionTrigger className="text-left text-lg font-semibold">
+                  Posso usar o AI Twin em múltiplos dispositivos?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Sim! O AI Twin sincroniza automaticamente entre todos os seus dispositivos. 
+                  Você pode começar uma conversa no computador e continuar no telemóvel sem perder 
+                  nenhuma informação. Todos os seus dados ficam sempre atualizados.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6">
+                <AccordionTrigger className="text-left text-lg font-semibold">
+                  Como começar a usar o AI Twin?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  É muito simples! Basta criar uma conta gratuita, completar o seu perfil e começar 
+                  a conversar com a Samantha. Ela irá guiá-lo através das funcionalidades principais 
+                  e ajudá-lo a configurar o AI Twin de acordo com as suas necessidades.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </section>
